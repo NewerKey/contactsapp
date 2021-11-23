@@ -1,3 +1,4 @@
+from sys import excepthook
 from flask import Flask, render_template , url_for , redirect , request , flash
 from flask_sqlalchemy import SQLAlchemy 
 from datetime import datetime
@@ -15,7 +16,6 @@ class Contact(db.Model):
     first_name = db.Column(db.String(100), nullable=False )
     last_name = db.Column(db.String(100), nullable=False )
     phone_number =  db.Column(db.Integer(), nullable=False)
-    date_joined= db.Column(db.DateTime, default=datetime.utcnow)
     email =  db.Column(db.String(100), nullable=False )
     group =  db.Column(db.String(100))
 
@@ -28,28 +28,23 @@ class Contact(db.Model):
 
 #url request path to homepage
 @app.route('/', methods=['POST', 'GET'])
-def Index():
-    all_contacts = Contact.query.all()
-    return render_template("index.html", contacts= all_contacts)
-
-#Add Contact
-@app.route('/add', methods=['POST', 'GET']) #get information and post to database
-def add():
+def index():
     if request.method == 'POST':
         firstname= request.form['first-name']
         lastname= request.form['last-name']
         email= request.form['email']
         phone= request.form['phone']
-        group= request.form['inputGroup']
-        date= request.form['date']
+        group= request.form['group']
 
-        new_contact = Contact(firstname, lastname, email, phone, group, date)
-
-        try:
-            db.session.add(new_contact)
-            db.session.commit()
-
+        new_contact = Contact(firstname, lastname, email, phone, group)
+        db.session.add(new_contact)
+        db.session.commit()
         flash("Contact saved")
+        return redirect('/')
+
+    else:
+        all_contacts = Contact.query.all()
+        return render_template("index.html", contacts= all_contacts)
 
 
 if __name__ == "__main__":
