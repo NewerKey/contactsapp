@@ -28,9 +28,9 @@ Flask Web Framework is used. It also uses the Model-View-Controller(MVC) Design 
 - Create environment
 
     ```bash
-    mkdir contactsapp
-    cd contactsapp
-    python -m venv venv
+    mkdir contapp
+    cd contapp
+    py -m venv venv
     ```
 
 - Activate environment
