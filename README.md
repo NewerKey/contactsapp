@@ -28,9 +28,9 @@ Flask Web Framework is used. It also uses the Model-View-Controller(MVC) Design 
 - Create environment
 
     ```bash
-    mkdir contapp
-    cd contapp
-    py -m venv venv
+    mkdir contactsapp
+    cd contactsapp
+    python -m venv venv
     ```
 
 - Activate environment
@@ -54,6 +54,8 @@ $pip install Flask-SQLAlchemy //database
       ├── static/
       ├── templates/
       ├── app.py
+      ├── models.py
+      ├── routes.py
       └── README.md
 ```
 
@@ -61,16 +63,27 @@ This application’s code is organized using these directories and files:
 
 - static/ contains the application’s static files(CSS, JS).
 - templates/ contains the application’s templates(HTML).
-- app.py contains the application logic, database and routes.
+- models.py contains the definition of the application’s models.
+- main.py contains the application logic.
+- routes.py contains the application routes path
 
 4.**Setting up Model and Database**
 Create database instance from SQLAlchemy, write a frunction that represents our model and connect to our application using sqlite3 by adding to configuration
 
-5.**Templates and Static Content**
+5.**Restructure Project**
+
+NB: Create a package file of the entire application to make it as an executable to install. (__init__.py). This solves the issue of circular imports.
+
+6.**Templates and Static Content**
     - base page which all pages extend from
     - an index page which displays contacts
     - css styles
     - form-input component.
+
+```bash
+    $pip install flask-wtf
+    $pip install wtforms
+```
 
 Create SECRET KEY for application as user will submit information to the database and to make information secure.
 Validators used for form input
@@ -86,14 +99,14 @@ Run with Production Server
 
 ```bash
     $pip install waitress
-    $ waitress-serve --call 'contapp:create_app'
+    $ waitress-serve --call 'contactsapp:create_app'
 ```
 
 ### Deploy to Heroku
 
 11.**💫 Site URL**
 
-Site is now running at <http://localhost:8000>
+Site is now running at <>
 
 12.**References**
 
