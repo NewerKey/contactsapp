@@ -38,8 +38,14 @@ body {
 
 .form-container {
     max-width: 568px;
+    margin-top: 20px;
 }
 
 .bi-trash {
     color:#E63946 ;
+}
+
+td {
+    text-align: center;
+    padding: 5px;
 }
