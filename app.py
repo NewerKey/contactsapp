@@ -17,7 +17,11 @@ class Contact(db.Model):
     phone_number =  db.Column(db.Integer(), nullable=False)
     date_joined= db.Column(db.DateTime, default=datetime.utcnow)
     email =  db.Column(db.String(100), nullable=False )
-    group =  db.Column(db.String(100) )
+    group =  db.Column(db.String(100))
+
+
+    def __repr__(self):
+        return '<Contact %r>' % self.id
 
 
 
