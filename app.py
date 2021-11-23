@@ -28,7 +28,7 @@ class Contact(db.Model):
 
 #url request path to homepage
 @app.route('/')
-@app.route('/home')
+@app.route('/home', methods=['POST', 'GET']) #get information and post to database
 def index():
     return render_template('index.html')
 

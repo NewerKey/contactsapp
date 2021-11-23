@@ -1,12 +1,8 @@
 {% extends 'base.html' %}
 
-{% block title %}<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+{% block title %}
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Python Flask Contacts Management System</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-    </div>
 </nav>
 {% endblock title%}
 
@@ -37,5 +33,44 @@
             </td>
         </tr>
     </table>
+<form action="/" method="POST" class="dialog">
+    <div class="row g-3">
+        <div class="col">
+            <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+        </div>
+    </div>
+    <div class="row g-3">
+        <div class="col">
+            <input type="email" class="form-control" placeholder="Email" aria-label="Email">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Phone" aria-label="Phone">
+        </div>
+        <div class="row g-3">
+            <div class="col">
+                <select id="inputGroup" class="form-select placeholder=" Group" aria-label="Group">
+                    <option selected>Choose Group...</option>
+                    <option>Operations</option>
+                    <option>Sales</option>
+                    <option>Management</option>
+                    <option>Research</option>
+                    <option>Operations</option>
+                    <option>IT</option>
+                    <option>Engineering</option>
+                </select>
+            </div>
+            <div class="col">
+                <input type="date" class="form-control" placeholder="Date Joined" aria-label="Date Joined">
+            </div>
+            <div class="row g-3">
+                <div class="col">
+                    <input type="submit" value="Save Contact">
+                </div>
+            </div>
+        </div>
+</form>
 </div>
 {% endblock content %}
