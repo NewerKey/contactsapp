@@ -1,8 +1,6 @@
 from sys import excepthook
 from flask import Flask, render_template , url_for , redirect , request , flash
-from flask_sqlalchemy import SQLAlchemy 
-from sqlalchemy import table, column
-from app import Contact
+from flask_sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__)
@@ -10,6 +8,7 @@ app = Flask(__name__)
 # for app to recognize and connect to database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 db= SQLAlchemy(app)
 
 #database instance
@@ -22,7 +21,7 @@ class Contact(db.Model):
 
 
     def __init__(self, name, phonenumber, email, group):
-        self.firstname = name
+        self.name = name
         self.phonenumber = phonenumber
         self.email = email
         self.group = group
