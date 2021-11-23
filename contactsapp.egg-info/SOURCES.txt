@@ -1,0 +1,12 @@
+MANIFEST.in
+README.md
+setup.py
+contactsapp/__init__.py
+contactsapp/models.py
+contactsapp/routes.py
+contactsapp.egg-info/PKG-INFO
+contactsapp.egg-info/SOURCES.txt
+contactsapp.egg-info/dependency_links.txt
+contactsapp.egg-info/not-zip-safe
+contactsapp.egg-info/requires.txt
+contactsapp.egg-info/top_level.txt

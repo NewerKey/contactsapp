@@ -1,0 +1,4 @@
+include contapp/database.db
+graft contapp/static
+graft contapp/templates
+global-exclude *.pyc
