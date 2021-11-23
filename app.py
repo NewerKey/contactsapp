@@ -16,15 +16,15 @@ db= SQLAlchemy(app)
 class Contact(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False )
-    phonenumber =  db.Column(db.String(), nullable=False)
     email =  db.Column(db.String(100), nullable=False )
+    phonenumber =  db.Column(db.String(), nullable=False)
     group =  db.Column(db.String(100))
 
 
     def __init__(self, name, phonenumber, email, group):
         self.name = name
-        self.phonenumber = phonenumber
         self.email = email
+        self.phonenumber = phonenumber
         self.group = group
 
 
@@ -42,8 +42,8 @@ def index():
 def add():
     if request.method == 'POST':
         name= request.form['name']
-        email= request.form['email']
         phonenumber= request.form['phone']
+        email= request.form['email']
         group= request.form['group']
 
         new_contact = Contact(name, email, phonenumber, group)
@@ -53,7 +53,7 @@ def add():
         return redirect(url_for('index'))
 
 #deleting contact
-@app.route('/delete/<id>/', methods=['GET', 'POST'])
+@app.route('/delete/<id>/', methods= ['GET', 'POST'])
 def delete(id):
     contact_to_delete = Contact.query.get(id)
     db.session.delete(contact_to_delete)

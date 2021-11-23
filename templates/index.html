@@ -13,8 +13,8 @@
         <tr>
             <th>Id</th>
             <th>Name</th>
-            <th>Email</th>
             <th>Phone</th>
+            <th>Email</th>
             <th>Group</th>
             <th>Actions</th>
         </tr>
@@ -27,7 +27,7 @@
             <td>{{contact.phonenumber}}</td>
             <td>{{contact.group}}</td>
             <td>
-                <a href="/delete/{{contact_id}}" onclick="return confirm('Move this contact to the Recycle bin?')"><i
+                <a href="/delete/{{contact.id}}" onclick="return confirm('Move this contact to the Recycle bin?')"><i
                         class="bi bi-trash"></i></a>
             </td>
         </tr>
