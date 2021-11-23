@@ -35,11 +35,18 @@ body {
     font-size: 1.5rem ;
 }
 
+h5{
+    margin-top: 100px;
+}
 
+.bi-person-plus {
+    color: green;
+    font-size: 2rem;
+}
 .form-container {
     max-width: 568px;
-    margin-top: 20px;
 }
+
 
 .bi-trash {
     color:#E63946 ;
@@ -48,4 +55,10 @@ body {
 td {
     text-align: center;
     padding: 5px;
+}
+
+.form-control {
+    border-radius: 10px;
+    border: solid 1px #414247;
+    line-height: 20px;
 }
