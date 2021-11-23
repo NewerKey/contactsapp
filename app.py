@@ -13,52 +13,56 @@ db= SQLAlchemy(app)
 #database instance
 class Contact(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(100), nullable=False )
-    last_name = db.Column(db.String(100), nullable=False )
-    phone_number =  db.Column(db.Integer(), nullable=False)
+    firstname = db.Column(db.String(100), nullable=False )
+    lastname = db.Column(db.String(100), nullable=False )
+    phonenumber =  db.Column(db.String(), nullable=False)
     email =  db.Column(db.String(100), nullable=False )
     group =  db.Column(db.String(100))
 
 
-    def __repr__(self):
-        return '<Contact %r>' % self.id
+    def __init__(self, firstname, lastname, phonenumber, email, group):
+        self.firstname = firstname
+        self.lastname = lastname
+        self.phonenumber = phonenumber
+        self.email = email
+        self.group = group
 
 
 
 
 #url request path to homepage
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/')
 def index():
+    contacts = Contact.query.all()
+    render_template("index.html", contacts=contacts)
+
+
+#adding contact
+@app.route('/add', methods=['POST'])
+def add():
     if request.method == 'POST':
         firstname= request.form['first-name']
         lastname= request.form['last-name']
         email= request.form['email']
-        phone= request.form['phone']
+        phonenumber= request.form['phone']
         group= request.form['group']
 
-        new_contact = Contact(firstname, lastname, email, phone, group)
+        new_contact = Contact(firstname, lastname, phonenumber, email, group)
         db.session.add(new_contact)
         db.session.commit()
         flash("Contact saved")
-        return redirect('/')
-
-    else:
-        all_contacts = Contact.query.all()
-        return render_template("index.html", contacts= all_contacts)
-
-
-
+        return redirect(url_for('index'))
 
 #deleting contact
-@app.route('/delete/<int:id>')
+@app.route('/delete/<id>/', methods=['GET', 'POST'])
 def delete(id):
-    contact_to_delete = Contact.query.get_or_404(id)
-    try:
-        db.session.delete(contact_to_delete)
-        db.session.commit()
-        return redirect('/')
-    except:
-        return 'There was a problem deleting that contact'
+    contact_to_delete = Contact.query.get(id)
+    db.session.delete(contact_to_delete)
+    db.session.commit()
+    flash("Contact deleted")
+    
+    return redirect(url_for('index'))
+
 
 if __name__ == "__main__":
     app.run(debug=True)

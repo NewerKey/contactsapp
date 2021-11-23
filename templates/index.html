@@ -21,13 +21,13 @@
 
         {%for contact in contacts%}
         <tr>
-            <td>{{}}</td>
-            <td>{{}}</td>
-            <td>{{}}</td>
-            <td>{{}}</td>
-            <td>{{}}</td>
+            <td>{{contact.firstname}}</td>
+            <td>{{contact.lastname}}</td>
+            <td>{{contact.email}}</td>
+            <td>{{contact.number}}</td>
+            <td>{{contact.phone}}</td>
             <td>
-                <a href="/delete/{{contact.id}}" onclick="return confirm('Move this contact to the Recycle bin?')"><i
+                <a href="/delete/{{contact_id}}" onclick="return confirm('Move this contact to the Recycle bin?')"><i
                         class="bi bi-trash"></i></a>
             </td>
         </tr>
@@ -35,30 +35,27 @@
     </table>
 
     <h5><i class="bi bi-person-plus"></i>Add New Contacts</h5>
-    
-    {% endif %}
     <div class="form-container">
-        <form action="{{url_for('index')}}" method="POST">
+        <form action="{{url_for('add')}}" method="POST">
             <div class="row g-3">
                 <div class="col">
                     <input type="text" name="first-name" class="form-control" placeholder="First name"
-                        aria-label="First name" value="">
+                        aria-label="First name">
                 </div>
                 <div class="col">
-                    <input type="text" name="last-name" class="form-control" placeholder="Last name" aria-label="Last name"
-                        value="">
+                    <input type="text" name="last-name" class="form-control" placeholder="Last name" aria-label="Last name">
                 </div>
             </div>
             <div class="row g-3">
                 <div class="col">
-                    <input type="email" name="email" class="form-control" placeholder="Email" aria-label="Email" value>
+                    <input type="email" name="email" class="form-control" placeholder="Email" aria-label="Email">
                 </div>
                 <div class="col">
-                    <input type="text" name="phone" class="form-control" placeholder="Phone" aria-label="Phone" value="">
+                    <input type="text" name="phone" class="form-control" placeholder="Phone" aria-label="Phone">
                 </div>
                 <div class="row g-3">
                     <div class="col">
-                        <input type= "text" name="group" class="form-select" value="">
+                        <input type= "text" name="group" class="form-select">
                     </div>
                 </div>
                     <div class="row g-3">
