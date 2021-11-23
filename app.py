@@ -8,6 +8,7 @@ app = Flask(__name__)
 # for app to recognize and connect to database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = '13b7cf64836c54c780f2a097'
 
 db= SQLAlchemy(app)
 
@@ -33,11 +34,11 @@ class Contact(db.Model):
 @app.route('/')
 def index():
     contacts = Contact.query.all()
-    render_template("index.html", contacts=contacts)
+    return render_template("index.html", contacts=contacts)
 
 
 #adding contact
-@app.route('/add', methods=['POST'])
+@app.route('/add', methods=['POST', 'GET'])
 def add():
     if request.method == 'POST':
         name= request.form['name']
@@ -45,7 +46,7 @@ def add():
         phonenumber= request.form['phone']
         group= request.form['group']
 
-        new_contact = Contact(name, phonenumber, email, group)
+        new_contact = Contact(name, email, phonenumber, group)
         db.session.add(new_contact)
         db.session.commit()
         flash("Contact saved")
