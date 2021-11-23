@@ -1,28 +1,28 @@
 from sys import excepthook
 from flask import Flask, render_template , url_for , redirect , request , flash
 from flask_sqlalchemy import SQLAlchemy 
-from datetime import datetime
+from sqlalchemy import table, column
+from app import Contact
+
 
 app = Flask(__name__)
 
 # for app to recognize and connect to database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ctdatabase.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db= SQLAlchemy(app)
 
 #database instance
 class Contact(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    firstname = db.Column(db.String(100), nullable=False )
-    lastname = db.Column(db.String(100), nullable=False )
+    name = db.Column(db.String(100), nullable=False )
     phonenumber =  db.Column(db.String(), nullable=False)
     email =  db.Column(db.String(100), nullable=False )
     group =  db.Column(db.String(100))
 
 
-    def __init__(self, firstname, lastname, phonenumber, email, group):
-        self.firstname = firstname
-        self.lastname = lastname
+    def __init__(self, name, phonenumber, email, group):
+        self.firstname = name
         self.phonenumber = phonenumber
         self.email = email
         self.group = group
@@ -41,13 +41,12 @@ def index():
 @app.route('/add', methods=['POST'])
 def add():
     if request.method == 'POST':
-        firstname= request.form['first-name']
-        lastname= request.form['last-name']
+        name= request.form['name']
         email= request.form['email']
         phonenumber= request.form['phone']
         group= request.form['group']
 
-        new_contact = Contact(firstname, lastname, phonenumber, email, group)
+        new_contact = Contact(name, phonenumber, email, group)
         db.session.add(new_contact)
         db.session.commit()
         flash("Contact saved")
