@@ -94,14 +94,6 @@ Write functions to describe the various functionalities (Add, Read, Delete)
 9.**Pushing to GitHub**
     -Store folders and files to not include in repository in .gitignore before pushing to Github
 
-10.**Deploy**
-Run with Production Server
-
-```bash
-    $pip install waitress
-    $ waitress-serve --call 'contactsapp:create_app'
-```
-
 ### Deploy to Heroku
 
 11.**💫 Site URL**
