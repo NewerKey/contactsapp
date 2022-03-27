@@ -1,10 +1,3 @@
-
-# Digital Product School Challenge Assessment
-
-Name: Yvette Nuerkie Nartey
-Program: Software Engineering
-21.11.2021
-
 ## 🚀 Project Overview
 
 An application where users can maintain their contacts. The application follows CRUD operations and utilizes a database to handle the storage.
